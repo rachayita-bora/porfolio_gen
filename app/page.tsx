@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Mail, Phone, MapPin, Download, Github, Linkedin, ExternalLink, Calendar, Award, Users } from "lucide-react"
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
 export default function Portfolio() {
   const skills = [
@@ -20,6 +18,8 @@ export default function Portfolio() {
     { name: "Matplotlib", level: 75 },
     { name: "Seaborn", level: 75 },
   ]
+
+  const sortedSkills = [...skills].sort((a, b) => b.level - a.level)
 
   const projects = [
     {
@@ -88,19 +88,6 @@ export default function Portfolio() {
     },
   ]
 
-  // Compute compact pie chart data (top 5 skills + "Other") and define slice colors (max 5)
-  const sortedSkills = [...skills].sort((a, b) => b.level - a.level)
-  const topFive = sortedSkills.slice(0, 5)
-  const othersTotal = sortedSkills.slice(5).reduce((sum, s) => sum + s.level, 0)
-  const skillsPieData = othersTotal > 0 ? [...topFive, { name: "Other", level: othersTotal }] : topFive
-  const pieColors = [
-    "hsl(var(--chart-1))",
-    "hsl(var(--chart-2))",
-    "hsl(var(--chart-3))",
-    "hsl(var(--chart-4))",
-    "hsl(var(--chart-5))",
-  ]
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -109,8 +96,8 @@ export default function Portfolio() {
           <div className="md:grid md:grid-cols-[120px_1fr] md:items-center md:gap-8">
             <div className="flex justify-center md:justify-start mb-6 md:mb-0">
               <img
-                src="/profile.png"
-                alt="Portrait of Rachayita Bora"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-31%20at%2022.16.15_f2f3ee6e.jpg-cAKXxmFQGtCMpg9dRmaJaops5sqnan.jpeg"
+                alt="Smiling person at an outdoor event"
                 className="h-24 w-24 md:h-28 md:w-28 rounded-full ring-4 ring-primary/20 shadow-sm object-cover"
               />
             </div>
@@ -160,6 +147,29 @@ export default function Portfolio() {
         </div>
       </section>
       {/* End Hero Section */}
+
+      {/* Skills Section (moved up) */}
+      <section id="skills" className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-serif text-3xl font-bold text-center mb-3">Technical Skills</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {sortedSkills.map((s) => (
+              <Badge key={s.name} variant="secondary" className="px-3 py-1 text-sm">
+                <span className="text-foreground">{s.name}</span>
+                <span className="text-foreground/60 ml-1">({s.level}%)</span>
+              </Badge>
+            ))}
+          </div>
+          <ul className="sr-only" aria-label="Technical skills with proficiency">
+            {sortedSkills.map((s) => (
+              <li key={s.name}>
+                {s.name}: {s.level} percent
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* About Section */}
       <section id="about" className="py-16 px-4">
@@ -231,58 +241,6 @@ export default function Portfolio() {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-3">Technical Skills</h2>
-          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="h-72 md:h-80">
-              <ChartContainer
-                config={{
-                  skills: {
-                    label: "Skill Level",
-                    color: "hsl(var(--chart-1))",
-                  },
-                }}
-                className="h-full"
-              >
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Pie
-                      data={skillsPieData}
-                      dataKey="level"
-                      nameKey="name"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      strokeWidth={2}
-                    >
-                      {skillsPieData.map((entry, i) => (
-                        <Cell key={`slice-${entry.name}`} fill={pieColors[i % pieColors.length]} />
-                      ))}
-                    </Pie>
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
-              </ChartContainer>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-serif text-lg font-semibold">Breakdown</h3>
-              <ul className="font-sans text-sm text-muted-foreground space-y-1" aria-label="Skill breakdown list">
-                {skillsPieData.map((s) => (
-                  <li key={s.name} className="flex items-center justify-between">
-                    <span className="text-foreground">{s.name}</span>
-                    <span>{s.level}%</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
 
