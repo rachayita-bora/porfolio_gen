@@ -62,6 +62,30 @@ export default function Portfolio() {
 
   const experiences = [
     {
+      title: "Machine Learning Intern",
+      company: "Prodigy Infotech",
+      duration: "Internship",
+      description:
+        "Worked on supervised learning problems from data ingestion to model evaluation with a focus on reproducible workflows.",
+      achievements: [
+        "Developed and evaluated ML models (Logistic Regression, Random Forest, XGBoost) using scikit-learn",
+        "Performed EDA, feature engineering, and cross-validation in Jupyter to improve model robustness",
+        "Created reproducible training/evaluation pipelines with clear documentation for model comparisons",
+      ],
+    },
+    {
+      title: "Data Visualization Associate",
+      company: "Excelerate",
+      duration: "Associate",
+      description:
+        "Built business-ready dashboards and reports to communicate insights and support data-informed decisions.",
+      achievements: [
+        "Designed interactive dashboards in Power BI/Tableau to track KPIs and trends",
+        "Prepared reliable datasets using SQL/Python and established refresh processes",
+        "Collaborated with stakeholders to translate requirements into clear visual narratives",
+      ],
+    },
+    {
       title: "Data Science Intern",
       company: "Academic Research Project",
       duration: "Jan 2024 - Present",
@@ -78,49 +102,72 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-4">Rachayita Bora</h1>
-          <p className="font-sans text-xl md:text-2xl text-muted-foreground mb-6">
-            Data Science Student & Analytics Enthusiast
-          </p>
-          <p className="font-sans text-lg text-foreground/80 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Passionate final-year B.Tech student specializing in Data Science with hands-on experience in machine
-            learning, data visualization, and statistical analysis. Committed to transforming complex datasets into
-            actionable business insights through innovative analytical approaches and cutting-edge technologies.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button size="lg" className="font-sans">
-              <Download className="mr-2 h-4 w-4" />
-              Download Resume
-            </Button>
-            <Button variant="outline" size="lg" className="font-sans bg-transparent">
-              View Projects
-            </Button>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4" />
-              rachayitabora2005@gmail.com
+      <section id="hero" className="relative bg-muted py-16 md:py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="md:grid md:grid-cols-[120px_1fr] md:items-center md:gap-8">
+            <div className="flex justify-center md:justify-start mb-6 md:mb-0">
+              <img
+                src="/profile.png"
+                alt="Portrait of Rachayita Bora"
+                className="h-24 w-24 md:h-28 md:w-28 rounded-full ring-4 ring-primary/20 shadow-sm object-cover"
+              />
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              +91 6297425681
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              Hooghly, West Bengal, India
+            <div className="text-center md:text-left">
+              <span className="inline-flex items-center rounded-full bg-accent/20 text-accent px-3 py-1 text-xs font-medium mb-3">
+                Open to Data Science Internships
+              </span>
+              <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-3 text-balance">
+                Rachayita Bora
+              </h1>
+              <div className="h-1 w-16 bg-primary mx-auto md:mx-0 rounded-full mb-5" />
+              <p className="font-sans text-xl md:text-2xl text-muted-foreground mb-6">
+                Data Science Student & Analytics Enthusiast
+              </p>
+              <p className="font-sans text-lg text-foreground/80 max-w-2xl mx-auto md:mx-0 mb-8 leading-relaxed text-pretty">
+                Passionate final-year B.Tech student specializing in Data Science with hands-on experience in machine
+                learning, data visualization, and statistical analysis. Committed to transforming complex datasets into
+                actionable business insights through innovative analytical approaches and cutting-edge technologies.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center mb-8">
+                <Button size="lg" className="font-sans" asChild>
+                  <a href="/Rachayita_Bora_Resume.pdf" download aria-label="Download resume">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Resume
+                  </a>
+                </Button>
+                <Button variant="outline" size="lg" className="font-sans bg-transparent" asChild>
+                  <a href="#projects" aria-label="Jump to projects">
+                    View Projects
+                  </a>
+                </Button>
+              </div>
+              <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  rachayitabora2005@gmail.com
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  +91 6297425681
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  Hooghly, West Bengal, India
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+      {/* End Hero Section */}
 
       {/* About Section */}
-      <section className="py-16 px-4">
+      <section id="about" className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-12">About Me</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-3">About Me</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center">
+            <Card className="text-center border-t-4 border-primary">
               <CardContent className="pt-6">
                 <Award className="h-8 w-8 mx-auto mb-4 text-primary" />
                 <h3 className="font-serif text-lg font-semibold mb-2">Academic Excellence</h3>
@@ -129,7 +176,7 @@ export default function Portfolio() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center">
+            <Card className="text-center border-t-4 border-primary">
               <CardContent className="pt-6">
                 <Users className="h-8 w-8 mx-auto mb-4 text-primary" />
                 <h3 className="font-serif text-lg font-semibold mb-2">Collaborative Spirit</h3>
@@ -138,7 +185,7 @@ export default function Portfolio() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center">
+            <Card className="text-center border-t-4 border-primary">
               <CardContent className="pt-6">
                 <Calendar className="h-8 w-8 mx-auto mb-4 text-primary" />
                 <h3 className="font-serif text-lg font-semibold mb-2">Continuous Learning</h3>
@@ -152,9 +199,10 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      <section id="experience" className="py-16 px-4 bg-muted/30">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-12">Experience</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-3">Experience</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
           {experiences.map((exp, index) => (
             <Card key={index} className="mb-6">
               <CardHeader>
@@ -187,9 +235,10 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 px-4">
+      <section id="skills" className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-12">Technical Skills</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-3">Technical Skills</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
           <div className="grid md:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
               <div key={index} className="space-y-2">
@@ -205,9 +254,10 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      <section id="projects" className="py-16 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-12">Featured Projects</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-3">Featured Projects</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:border-primary/50">
@@ -221,7 +271,7 @@ export default function Portfolio() {
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
                     <CardTitle className="font-serif text-xl">{project.title}</CardTitle>
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="outline" className="text-xs border-accent text-accent">
                       {project.duration}
                     </Badge>
                   </div>
@@ -265,8 +315,9 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education */}
-            <div>
-              <h2 className="font-serif text-3xl font-bold mb-8">Education</h2>
+            <div id="education">
+              <h2 className="font-serif text-3xl font-bold mb-3">Education</h2>
+              <div className="h-1 w-12 bg-accent rounded-full mb-7" />
               <Card>
                 <CardHeader>
                   <CardTitle className="font-serif text-xl">Computer Science & Engineering (Data Science)</CardTitle>
@@ -294,8 +345,9 @@ export default function Portfolio() {
             </div>
 
             {/* Certificates */}
-            <div>
-              <h2 className="font-serif text-3xl font-bold mb-8">Certifications</h2>
+            <div id="certifications">
+              <h2 className="font-serif text-3xl font-bold mb-3">Certifications</h2>
+              <div className="h-1 w-12 bg-accent rounded-full mb-7" />
               <div className="space-y-4">
                 {certificates.map((cert, index) => (
                   <Card key={index}>
@@ -319,9 +371,10 @@ export default function Portfolio() {
       </section>
 
       {/* Languages Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      <section id="languages" className="py-16 px-4 bg-muted/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl font-bold mb-8">Languages</h2>
+          <h2 className="font-serif text-3xl font-bold mb-3">Languages</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-7" />
           <div className="flex justify-center gap-4">
             <Badge variant="secondary" className="px-4 py-2 text-sm">
               English
@@ -337,9 +390,10 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 px-4">
+      <section id="contact" className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl font-bold mb-8">Let's Connect</h2>
+          <h2 className="font-serif text-3xl font-bold mb-3">Let's Connect</h2>
+          <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-7" />
           <p className="font-sans text-lg text-muted-foreground mb-8">
             I'm always interested in discussing data science opportunities, collaborations, and innovative projects.
           </p>
