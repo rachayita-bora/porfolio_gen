@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
 import { Mail, Phone, MapPin, Download, Github, Linkedin, ExternalLink, Calendar, Award, Users } from "lucide-react"
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
 export default function Portfolio() {
   const skills = [
@@ -85,18 +86,19 @@ export default function Portfolio() {
         "Collaborated with stakeholders to translate requirements into clear visual narratives",
       ],
     },
-    {
-      title: "Data Science Intern",
-      company: "Academic Research Project",
-      duration: "Jan 2024 - Present",
-      description:
-        "Leading data analysis initiatives for academic research, focusing on statistical modeling and predictive analytics.",
-      achievements: [
-        "Developed automated data processing pipelines reducing analysis time by 60%",
-        "Created interactive dashboards for research presentation to faculty",
-        "Collaborated with cross-functional teams on data-driven research projects",
-      ],
-    },
+  ]
+
+  // Compute compact pie chart data (top 5 skills + "Other") and define slice colors (max 5)
+  const sortedSkills = [...skills].sort((a, b) => b.level - a.level)
+  const topFive = sortedSkills.slice(0, 5)
+  const othersTotal = sortedSkills.slice(5).reduce((sum, s) => sum + s.level, 0)
+  const skillsPieData = othersTotal > 0 ? [...topFive, { name: "Other", level: othersTotal }] : topFive
+  const pieColors = [
+    "hsl(var(--chart-1))",
+    "hsl(var(--chart-2))",
+    "hsl(var(--chart-3))",
+    "hsl(var(--chart-4))",
+    "hsl(var(--chart-5))",
   ]
 
   return (
@@ -113,9 +115,6 @@ export default function Portfolio() {
               />
             </div>
             <div className="text-center md:text-left">
-              <span className="inline-flex items-center rounded-full bg-accent/20 text-accent px-3 py-1 text-xs font-medium mb-3">
-                Open to Data Science Internships
-              </span>
               <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-3 text-balance">
                 Rachayita Bora
               </h1>
@@ -240,15 +239,48 @@ export default function Portfolio() {
           <h2 className="font-serif text-3xl font-bold text-center mb-3">Technical Skills</h2>
           <div className="h-1 w-12 bg-accent mx-auto rounded-full mb-10" />
           <div className="grid md:grid-cols-2 gap-6">
-            {skills.map((skill, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="font-sans font-medium text-foreground">{skill.name}</span>
-                  <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                </div>
-                <Progress value={skill.level} className="h-2" />
-              </div>
-            ))}
+            <div className="h-72 md:h-80">
+              <ChartContainer
+                config={{
+                  skills: {
+                    label: "Skill Level",
+                    color: "hsl(var(--chart-1))",
+                  },
+                }}
+                className="h-full"
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Pie
+                      data={skillsPieData}
+                      dataKey="level"
+                      nameKey="name"
+                      innerRadius={60}
+                      outerRadius={90}
+                      paddingAngle={2}
+                      strokeWidth={2}
+                    >
+                      {skillsPieData.map((entry, i) => (
+                        <Cell key={`slice-${entry.name}`} fill={pieColors[i % pieColors.length]} />
+                      ))}
+                    </Pie>
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-serif text-lg font-semibold">Breakdown</h3>
+              <ul className="font-sans text-sm text-muted-foreground space-y-1" aria-label="Skill breakdown list">
+                {skillsPieData.map((s) => (
+                  <li key={s.name} className="flex items-center justify-between">
+                    <span className="text-foreground">{s.name}</span>
+                    <span>{s.level}%</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -405,7 +437,7 @@ export default function Portfolio() {
               </a>
             </Button>
             <Button variant="outline" size="lg" className="font-sans bg-transparent" asChild>
-              <a href="https://github.com/rachayitabora" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/rachayita-bora" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
                 GitHub
               </a>
