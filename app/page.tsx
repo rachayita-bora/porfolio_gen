@@ -123,9 +123,10 @@ export default function Portfolio() {
                 Data Science Student & Analytics Enthusiast
               </p>
               <p className="font-sans text-lg text-foreground/80 max-w-2xl mx-auto md:mx-0 mb-8 leading-relaxed text-pretty">
-                Passionate final-year B.Tech student specializing in Data Science with hands-on experience in machine
-                learning, data visualization, and statistical analysis. Committed to transforming complex datasets into
-                actionable business insights through innovative analytical approaches and cutting-edge technologies.
+                Passionate 3rd-year B.Tech student in Computer Science (Data Science) with hands-on experience in
+                machine learning, data visualization, and statistical analysis. Committed to transforming complex
+                datasets into actionable business insights through innovative analytical approaches and cutting-edge
+                technologies.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center mb-8">
                 <Button size="lg" className="font-sans" asChild>
